@@ -77,9 +77,7 @@ func (srv *RelayService) Serve(ctx context.Context) error {
 	}
 
 	// relay acks if unrelayed seqs exist
-	if err := srv.sh.Updates(srv.src, srv.dst); err != nil {
-		return err
-	}
+
 	aseqs, err := srv.st.UnrelayedAcknowledgements(srv.src, srv.dst, srv.sh)
 	if err != nil {
 		return err
