@@ -23,6 +23,7 @@ func serviceCmd(ctx *config.Context) *cobra.Command {
 func startCmd(ctx *config.Context) *cobra.Command {
 	const (
 		flagRelayInterval = "relay-interval"
+		flagRelayAttempts = "relay-attempts"
 	)
 
 	cmd := &cobra.Command{
@@ -44,9 +45,10 @@ func startCmd(ctx *config.Context) *cobra.Command {
 			if err := st.SetupRelay(context.TODO(), c[src], c[dst]); err != nil {
 				return err
 			}
-			return core.StartService(context.Background(), st, c[src], c[dst], viper.GetDuration(flagRelayInterval))
+			return core.StartService(context.Background(), st, c[src], c[dst], viper.GetDuration(flagRelayInterval), viper.GetUint(flagRelayAttempts))
 		},
 	}
 	cmd.Flags().Duration(flagRelayInterval, 3*time.Second, "time interval to perform relays")
+	cmd.Flags().Uint(flagRelayAttempts, 5, "count of retry")
 	return cmd
 }
