@@ -1,0 +1,21 @@
+{
+  "name": "yui_ibc_solidity_celo",
+  "version": "1.0.0",
+  "description": "contracts/mingrations files came from https://github.com/hyperledger-labs/yui-ibc-solidity",
+  "scripts": {
+    "compile": "truffle compile",
+    "deploy-localnet": "truffle migrate --network localnet --reset"
+  },
+  "author": "Datachain",
+  "license": "Apache2.0",
+  "dependencies": {
+    "@celo/contractkit": "^2.0.0",
+    "@celo/utils": "^2.0.0",
+    "@hyperledger-labs/yui-ibc-solidity": "git+https://github.com/hyperledger-labs/yui-ibc-solidity.git#1449d800e41331d8994a33aacd026aa7b7b9176b",
+    "@truffle/hdwallet-provider": "^2.0.8",
+    "dotenv": "^16.0.1",
+    "openzeppelin-solidity": "^4.3.2",
+    "truffle-contract-size": "^2.0.1",
+    "web3": "^1.3.0"
+  }
+}

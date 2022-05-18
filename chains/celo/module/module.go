@@ -13,7 +13,7 @@ var _ config.ModuleI = (*Module)(nil)
 
 // Name returns the name of the module
 func (Module) Name() string {
-	return "ethereum" // TODO: change
+	return "celo"
 }
 
 // RegisterInterfaces register the module interfaces to protobuf Any.

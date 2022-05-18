@@ -1,4 +1,4 @@
-package ethereum
+package celo
 
 import (
 	"context"
@@ -13,8 +13,7 @@ import (
 	"github.com/ethereum/go-ethereum/rpc"
 )
 
-// TODO: rename
-func NewETHClient(endpoint string) (*ethclient.Client, error) {
+func NewCeloClient(endpoint string) (*ethclient.Client, error) {
 	conn, err := rpc.DialHTTP(endpoint)
 	if err != nil {
 		return nil, err

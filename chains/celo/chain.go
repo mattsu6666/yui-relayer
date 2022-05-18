@@ -1,4 +1,4 @@
-package ethereum
+package celo
 
 import (
 	"context"
@@ -41,9 +41,8 @@ type Chain struct {
 var _ core.ChainI = (*Chain)(nil)
 
 func NewChain(config ChainConfig) (*Chain, error) {
-	// TODO: Maybe change for celo
 	id := big.NewInt(config.EthChainId)
-	client, err := NewETHClient(config.RpcAddr)
+	client, err := NewCeloClient(config.RpcAddr)
 	if err != nil {
 		return nil, err
 	}

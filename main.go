@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 
+	celo "github.com/hyperledger-labs/yui-relayer/chains/celo/module"
 	corda "github.com/hyperledger-labs/yui-relayer/chains/corda/module"
 	ethereum "github.com/hyperledger-labs/yui-relayer/chains/ethereum/module"
 	fabric "github.com/hyperledger-labs/yui-relayer/chains/fabric/module"
@@ -17,6 +18,7 @@ func main() {
 		fabric.Module{},
 		corda.Module{},
 		ethereum.Module{},
+		celo.Module{},
 		mock.Module{},
 	); err != nil {
 		log.Fatal(err)
