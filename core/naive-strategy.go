@@ -193,8 +193,14 @@ func (st NaiveStrategy) RelayPackets(src, dst *ProvableChain, sp *RelaySequences
 		if len(msgs.Dst) > 1 {
 			logPacketsRelayed(dst, src, len(msgs.Dst)-1)
 		}
+		if len(msgs.Dst) == 1 {
+			logPacketsRelayed(dst, src, len(msgs.Dst))
+		}
 		if len(msgs.Src) > 1 {
 			logPacketsRelayed(src, dst, len(msgs.Src)-1)
+		}
+		if len(msgs.Src) == 1 {
+			logPacketsRelayed(src, dst, len(msgs.Src))
 		}
 	}
 
@@ -384,8 +390,14 @@ func (st NaiveStrategy) RelayAcknowledgements(src, dst *ProvableChain, sp *Relay
 		if len(msgs.Dst) > 1 {
 			logPacketsRelayed(dst, src, len(msgs.Dst)-1)
 		}
+		if len(msgs.Dst) == 1 {
+			logPacketsRelayed(dst, src, len(msgs.Dst))
+		}
 		if len(msgs.Src) > 1 {
 			logPacketsRelayed(src, dst, len(msgs.Src)-1)
+		}
+		if len(msgs.Src) == 1 {
+			logPacketsRelayed(src, dst, len(msgs.Src))
 		}
 	}
 
