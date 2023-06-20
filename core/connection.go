@@ -65,11 +65,14 @@ func CreateConnection(src, dst *ProvableChain, to time.Duration) error {
 }
 
 func createConnectionStep(src, dst *ProvableChain) (*RelayMsgs, error) {
+	fmt.Println("createConnectionStep(src, dst *ProvableChain) (*RelayMsgs, error)")
 	out := NewRelayMsgs()
+	fmt.Println("if err := validatePaths(src, dst); err != nil {")
 	if err := validatePaths(src, dst); err != nil {
 		return nil, err
 	}
 	// First, update the light clients to the latest header and return the header
+	fmt.Println("sh, err := NewSyncHeaders(src, dst)")
 	sh, err := NewSyncHeaders(src, dst)
 	if err != nil {
 		return nil, err
@@ -83,10 +86,12 @@ func createConnectionStep(src, dst *ProvableChain) (*RelayMsgs, error) {
 		srcConsH, dstConsH                 ibcexported.Height
 	)
 	err = retry.Do(func() error {
+		fmt.Println("srcUpdateHeaders, dstUpdateHeaders, err = sh.SetupBothHeadersForUpdate(src, dst)")
 		srcUpdateHeaders, dstUpdateHeaders, err = sh.SetupBothHeadersForUpdate(src, dst)
 		return err
 	}, rtyAtt, rtyDel, rtyErr, retry.OnRetry(func(n uint, err error) {
 		// logRetryUpdateHeaders(src, dst, n, err)
+		fmt.Println("if err := sh.Updates(src, dst); err != nil {")
 		if err := sh.Updates(src, dst); err != nil {
 			panic(err)
 		}
@@ -95,11 +100,13 @@ func createConnectionStep(src, dst *ProvableChain) (*RelayMsgs, error) {
 		return nil, err
 	}
 
+	fmt.Println("srcConn, dstConn, err := QueryConnectionPair(sh.GetQueryContext(src.ChainID()), sh.GetQueryContext(dst.ChainID()), src, dst)")
 	srcConn, dstConn, err := QueryConnectionPair(sh.GetQueryContext(src.ChainID()), sh.GetQueryContext(dst.ChainID()), src, dst)
 	if err != nil {
 		return nil, err
 	}
 
+	fmt.Println("if !(srcConn.Connection.State == conntypes.UNINITIALIZED && dstConn.Connection.State == conntypes.UNINITIALIZED) {")
 	if !(srcConn.Connection.State == conntypes.UNINITIALIZED && dstConn.Connection.State == conntypes.UNINITIALIZED) {
 		// Query client state from each chain's client
 		srcCsRes, dstCsRes, err = QueryClientStatePair(sh.GetQueryContext(src.ChainID()), sh.GetQueryContext(dst.ChainID()), src, dst)
