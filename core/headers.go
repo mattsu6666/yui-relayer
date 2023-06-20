@@ -105,10 +105,12 @@ func (sh syncHeaders) SetupHeadersForUpdate(src, dst ChainICS02QuerierLightClien
 
 // SetupBothHeadersForUpdate returns both `src` and `dst` chain's headers to update the clients on each chain
 func (sh syncHeaders) SetupBothHeadersForUpdate(src, dst ChainICS02QuerierLightClient) ([]Header, []Header, error) {
+	fmt.Println("srcHs, err := sh.SetupHeadersForUpdate(src, dst)")
 	srcHs, err := sh.SetupHeadersForUpdate(src, dst)
 	if err != nil {
 		return nil, nil, err
 	}
+	fmt.Println("dstHs, err := sh.SetupHeadersForUpdate(dst, src)")
 	dstHs, err := sh.SetupHeadersForUpdate(dst, src)
 	if err != nil {
 		return nil, nil, err
