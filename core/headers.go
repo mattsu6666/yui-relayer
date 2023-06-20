@@ -69,10 +69,12 @@ func (sh *syncHeaders) Updates(src, dst ChainInfoLightClient) error {
 		return err
 	}
 
+	fmt.Println("srcHeader, err := src.GetLatestFinalizedHeader()")
 	srcHeader, err := src.GetLatestFinalizedHeader()
 	if err != nil {
 		return err
 	}
+	fmt.Println("dstHeader, err := dst.GetLatestFinalizedHeader()")
 	dstHeader, err := dst.GetLatestFinalizedHeader()
 	if err != nil {
 		return err
