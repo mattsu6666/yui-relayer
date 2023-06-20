@@ -115,6 +115,7 @@ func (sh syncHeaders) SetupBothHeadersForUpdate(src, dst ChainICS02QuerierLightC
 	if err != nil {
 		return nil, nil, err
 	}
+	fmt.Println("return srcHs, dstHs, nil")
 	return srcHs, dstHs, nil
 }
 
